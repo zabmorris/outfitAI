@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import requests
 
 # define sigmoid function as activation function for both hidden layer 
 # and output layer
