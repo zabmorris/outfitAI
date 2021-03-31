@@ -20,8 +20,8 @@ def compute_loss(y_actual, y_desired):
 class NeuralNetwork:
     def __init__(self, x, y_desired):
         self.input      = x
-        self.weights1   = np.random.rand(self.input.shape[1],4) 
-        self.weights2   = np.random.rand(4,1)                 
+        self.weights1   = np.random.rand(self.input.shape[1],8) 
+        self.weights2   = np.random.rand(8,8)                 
         self.y          = y_desired
         self.output     = np.zeros(self.y.shape)
 
