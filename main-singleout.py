@@ -12,7 +12,7 @@ def sigmoid_derivative(sigma):
 
 # define sum-of-squares error function as loss function
 def compute_loss(y_actual, y_desired):
-    return ((y_desired - y_actual)**2).sum()
+    return (0.5*(y_desired - y_actual)**2).sum()
 
 # define and initialize an ANN with one input lary, one hidden layer, 
 # and one output layer
@@ -36,16 +36,16 @@ class NeuralNetwork:
         # application of the chain rule to find derivative of the 
         # loss function with respect to weights2 and weights1
         d_weights2 = np.dot(self.layer1.T, 
-             2*(self.output - self.y) * sigmoid_derivative(self.output))
+             (self.output - self.y) * sigmoid_derivative(self.output))
         
-        temp = np.dot(2*(self.output - self.y)*sigmoid_derivative(self.output),
+        temp = np.dot((self.output - self.y)*sigmoid_derivative(self.output),
                                                             self.weights2.T)
                     
         d_weights1 = np.dot(self.input.T,temp*sigmoid_derivative(self.layer1))
 
         # update the weights with the derivative (slope) of the loss function
-        self.weights2 = self.weights2 - 0.0009*d_weights2
-        self.weights1 = self.weights1 - 0.0009*d_weights1
+        self.weights2 = self.weights2 - 0.0015*d_weights2
+        self.weights1 = self.weights1 - 0.0015*d_weights1
 
 
 ##########################################################################
@@ -61,7 +61,7 @@ ANN = NeuralNetwork(x, y_desired)
 loss_values = []
 
 # train the ANN for 3000 iterations 
-for i in range(10000):
+for i in range(1000000):
     ANN.feedforward()
     ANN.backprop()
     loss = compute_loss(ANN.output, y_desired)
