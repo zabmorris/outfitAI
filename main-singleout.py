@@ -44,8 +44,8 @@ class NeuralNetwork:
         d_weights1 = np.dot(self.input.T,temp*sigmoid_derivative(self.layer1))
 
         # update the weights with the derivative (slope) of the loss function
-        self.weights2 = self.weights2 - 0.0015*d_weights2
-        self.weights1 = self.weights1 - 0.0015*d_weights1
+        self.weights2 = self.weights2 - 0.00151*d_weights2
+        self.weights1 = self.weights1 - 0.00151*d_weights1
 
 
 ##########################################################################
@@ -61,7 +61,7 @@ ANN = NeuralNetwork(x, y_desired)
 loss_values = []
 
 # train the ANN for 3000 iterations 
-for i in range(1000000):
+for i in range(250000000):
     ANN.feedforward()
     ANN.backprop()
     loss = compute_loss(ANN.output, y_desired)
